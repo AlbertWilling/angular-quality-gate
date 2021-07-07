@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {DetailsService} from '../../services/details.service';
+import {ActivatedRoute} from '@angular/router';
+import {SightseeingPoint} from '../../../models/sightseeing-point';
 
 @Component({
   selector: 'app-detail',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailComponent implements OnInit {
 
-  constructor() { }
+  id = '';
+  sight = new SightseeingPoint();
+
+  constructor(private detailsService: DetailsService, private activeRoute: ActivatedRoute) {
+    this.activeRoute.params.subscribe(params => this.id = params.id);
+  }
 
   ngOnInit(): void {
+    this.detailsService.getSightById(this.id).subscribe(result => this.sight = result);
   }
 
 }

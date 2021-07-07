@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class SightsListComponent implements OnInit {
 
-  sights: any[];
+  sights: SightseeingPoint[];
 
   constructor(private sightsService: SightsService, private router: Router) {
   }
@@ -23,5 +23,9 @@ export class SightsListComponent implements OnInit {
 
   editSightPoint(sight: SightseeingPoint): void {
     this.router.navigateByUrl(`/sight/edit/${sight.longitude}/${sight.latitude}`);
+  }
+
+  showSightPointDetails(sight: SightseeingPoint): void {
+    this.router.navigateByUrl(`sight/details/${sight.id}`);
   }
 }

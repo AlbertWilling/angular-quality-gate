@@ -5,8 +5,7 @@ import {FormComponent} from './component/form/form.component';
 
 const routes: Routes = [
   {path: 'add', component: FormComponent},
-  {path: 'details', component: DetailComponent},
-  // {path: 'edit/?longitude=longitude&latitude=latitude', component: FormComponent},
+  {path: 'details/:id', component: DetailComponent},
   {path: 'edit/:longitude/:latitude', component: FormComponent},
 ];
 

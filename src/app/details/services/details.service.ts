@@ -17,6 +17,10 @@ export class DetailsService {
     return this.http.get<SightseeingPoint>(`${environment.apiUrl}/sights/?longitude=${longitude}&latitude=${latitude}`);
   }
 
+  getSightById(id: string): Observable<SightseeingPoint> {
+    return this.http.get<SightseeingPoint>(`${environment.apiUrl}/sights/${id}`);
+  }
+
   addSight(sight: SightseeingPoint): Observable<SightseeingPoint>{
     return this.http.post<SightseeingPoint>(`${environment.apiUrl}/sights`, sight);
   }
