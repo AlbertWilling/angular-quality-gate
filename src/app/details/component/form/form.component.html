@@ -1,0 +1,27 @@
+<p>form works!</p>
+<div>
+  <form [formGroup]="form" (ngSubmit)="createPoint()">
+    <h2>Form</h2>
+    <label for="name">Enter name</label>
+    <input id="name" type="text" formControlName="name">
+    <label for="longitude">Enter longitude</label>
+    <input id="longitude" type="number" formControlName="longitude">
+    <label for="latitude">Enter latitude</label>
+    <input id="latitude" type="number" formControlName="latitude">
+    <label for="country" type="number">Enter country name</label>
+    <input id="country" formControlName="countryName">
+    <label for="iata">Enter iata code</label>
+    <input id="iata" type="text" formControlName="iataCode">
+    <label for="description" type="text">Enter name</label>
+    <input id="description">
+    <label for="color">Choose color</label>
+    <select id="color">
+      <option value="1">Color 1</option>
+      <option value="2">Color 2</option>
+      <option value="3">Color 3</option>
+    </select>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+

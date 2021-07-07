@@ -15,6 +15,9 @@ export class NavComponent {
     {
       title: 'MAP',
       path: 'sights'
+    },
+    { title: 'ADD POINT',
+      path: 'sight/add'
     }
   ];
 }

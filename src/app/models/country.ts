@@ -1,4 +1,5 @@
 export class Country {
-  name: string;
-  iata_code: string;
+  name = '';
+  // tslint:disable-next-line:variable-name
+  iata_code = '';
 }

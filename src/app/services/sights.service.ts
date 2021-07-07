@@ -19,7 +19,6 @@ export class SightsService {
   getSights(): Observable<SightseeingPoint[]> {
      return this.http.get<SightseeingPoint[]>(`${environment.apiUrl}/sights`).pipe(
       tap(console.log),
-      map(result => result),
       map(sights => {
         return sights.map(sight => {
           const country = new Country();
@@ -36,9 +35,6 @@ export class SightsService {
           );
         });
       }),
-      map(sights => {
-        return sights.filter(sight => sight.color);
-      })
     );
   }
 }

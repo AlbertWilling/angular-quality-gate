@@ -8,12 +8,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgxMapboxGLModule} from 'ngx-mapbox-gl';
 import {environment} from '../environments/environment';
-import { SightsComponent } from './sights/sights.component';
-import { NavComponent } from './nav/nav.component';
+import {SightsComponent} from './sights/sights.component';
+import {NavComponent} from './nav/nav.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import { SightsListComponent } from './sights-list/sights-list.component';
+import {SightsListComponent} from './sights-list/sights-list.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {DetailsModule} from './details/details.module';
+import {FormComponent} from './details/component/form/form.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import {MatCardModule} from '@angular/material/card';
     MapComponent,
     SightsComponent,
     NavComponent,
+    SightsListComponent,
+    // FormComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +36,11 @@ import {MatCardModule} from '@angular/material/card';
     MatTabsModule,
     MatButtonModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    DetailsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -5,7 +5,7 @@ export class SightseeingPoint {
     public name: string = '',
     public longitude: number = 0,
     public latitude: number = 0,
-    public country: Country,
+    public country: Country = new Country(),
     public description: string = '',
     public color: number = 0
   ) {
