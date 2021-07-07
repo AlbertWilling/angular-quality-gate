@@ -13,13 +13,14 @@ import {DetailsService} from '../../services/details.service';
 export class FormComponent implements OnInit {
 
   form: FormGroup;
+  submitted = false;
   longitude = '';
   latitude = '';
   sight: SightseeingPoint;
   sights: string[] = [];
+  longitudePattern = /^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$/;
+  latitudePattern = /^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/;
 
-  // longitudePattern =
-  // latidutePattern =
 
   constructor(private detailsService: DetailsService, private activeRoute: ActivatedRoute) {
     this.activeRoute.params.subscribe(params => {
@@ -39,14 +40,15 @@ export class FormComponent implements OnInit {
       });
     }
     this.createForm();
+    this.submitted = false;
   }
 
   public createForm(): void {
     this.form = new FormGroup(
       {
         name: new FormControl('', [Validators.required]),
-        longitude: new FormControl(null, [Validators.required]),
-        latitude: new FormControl(null, [Validators.required]),
+        longitude: new FormControl(null, [Validators.required, Validators.pattern(this.longitudePattern)]),
+        latitude: new FormControl(null, [Validators.required, Validators.pattern(this.latitudePattern)]),
         countryName: new FormControl('', [Validators.required]),
         iataCode: new FormControl('', [Validators.required]),
         description: new FormControl('', [Validators.required, Validators.maxLength(256)]),
@@ -76,13 +78,14 @@ export class FormComponent implements OnInit {
     if (this.sight) {
         this.getValuesFromForm(this.sight, this.form);
         this.detailsService.updateSight(this.sight.id, this.sight).subscribe();
+        this.submitted = true;
         return;
       }
     this.sight = new SightseeingPoint();
     this.sight.id = this.generateUniqueString();
     this.getValuesFromForm(this.sight, this.form);
     this.detailsService.addSight(this.sight).subscribe();
-    console.log('BluBlu');
+    this.submitted = true;
   }
 
   getValuesFromForm(sight: SightseeingPoint, form: FormGroup): void {
@@ -96,4 +99,13 @@ export class FormComponent implements OnInit {
     sight.description = form.value.description;
     sight.color = Number(form.value.color);
   }
+
+  // Validation errors section
+
+  errorMessage(controlName: string, errorName: string): boolean {
+    return this.form.controls[controlName]?.touched && this.form.controls[controlName]?.errors?.[errorName];
+  }
+
+
+
 }

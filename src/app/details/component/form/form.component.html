@@ -1,24 +1,54 @@
-<div class="form-container">
+<div class="form-container" *ngIf="!submitted">
   <form [formGroup]="form" (ngSubmit)="createOrUpdateSight()">
     <h2>Form</h2>
     <label for="name">Enter name</label>
-    <input id="name" type="text" formControlName="name">
+    <input id="name" type="text" formControlName="name" class="form-control">
+    <div *ngIf="errorMessage('name', 'required')" class="alert alert-danger">
+      Name is required
+    </div>
     <label for="longitude">Enter longitude</label>
-    <input id="longitude" type="number" formControlName="longitude">
+    <input id="longitude" type="number" formControlName="longitude" class="form-control">
+    <div *ngIf="errorMessage('longitude', 'required')" class="alert alert-danger">
+      Longitude value is required
+    </div>
+    <div *ngIf="errorMessage('longitude', 'pattern')" class="alert alert-danger">
+      Longitude value is incorrect
+    </div>
     <label for="latitude">Enter latitude</label>
-    <input id="latitude" type="number" formControlName="latitude">
+    <input id="latitude" type="number" formControlName="latitude" class="form-control">
+    <div *ngIf="errorMessage('latitude', 'required')" class="alert alert-danger">
+      Latitude value is required
+    </div>
+    <div *ngIf="errorMessage('latitude', 'pattern')" class="alert alert-danger">
+      Latitude value is incorrect
+    </div>
     <label for="country" type="number">Enter country name</label>
-    <input id="country" formControlName="countryName">
+    <input id="country" formControlName="countryName" class="form-control">
+    <div *ngIf="errorMessage('countryName', 'required')" class="alert alert-danger">
+      Country name is required
+    </div>
     <label for="iata">Enter iata code</label>
-    <input id="iata" type="text" formControlName="iataCode">
+    <input id="iata" type="text" formControlName="iataCode" class="form-control">
+    <div *ngIf="errorMessage('iataCode', 'required')" class="alert alert-danger">
+      IATA code is required
+    </div>
     <label for="description" type="text">Enter description</label>
-    <input id="description" formControlName="description">
+    <input id="description" formControlName="description" class="form-control">
+    <div *ngIf="errorMessage('description', 'required')" class="alert alert-danger">
+      Description is required
+    </div>
+    <div *ngIf="errorMessage('description', 'pattern')" class="alert alert-danger">
+      Description can have maximum 256 characters
+    </div>
     <label for="color">Choose color</label>
-    <select id="color" formControlName="color">
+    <select id="color" formControlName="color" class="form-control">
       <option value="1">Color 1</option>
       <option value="2">Color 2</option>
       <option value="3">Color 3</option>
     </select>
+    <div *ngIf="errorMessage('color', 'required')" class="alert alert-danger">
+      Choose the color
+    </div>
     <ng-container *ngIf="sight; then modify; else add"></ng-container>
     <ng-template #modify>
       <button type="submit" [disabled]="this.form.invalid">Update sight</button>
@@ -27,6 +57,10 @@
       <button type="submit" [disabled]="this.form.invalid">Add sight</button>
     </ng-template>
   </form>
+</div>
+<div class="submitted" *ngIf="submitted">
+  <h2>Form has been submitted</h2>
+<!--  <button (click)="">Add new sight point</button>-->
 </div>
 
 
