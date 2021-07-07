@@ -16,6 +16,7 @@ export class FormComponent implements OnInit {
   longitude = '';
   latitude = '';
   sight: SightseeingPoint;
+  sights: string[] = [];
 
   // longitudePattern =
   // latidutePattern =
@@ -24,8 +25,6 @@ export class FormComponent implements OnInit {
     this.activeRoute.params.subscribe(params => {
       this.longitude = params.longitude;
       this.latitude = params.latitude;
-      // console.log(this.longitude);
-      // console.log(this.latitude);
     });
   }
 
@@ -33,11 +32,12 @@ export class FormComponent implements OnInit {
     if (this.longitude && this.latitude) {
       this.detailsService.getSight(Number(this.longitude), Number(this.latitude)).subscribe((result: SightseeingPoint) => {
         this.sight = result[0];
-        console.log({...this.sight, ...this.sight.country});
-        this.form.patchValue({countryName: this.sight.country.name, iataCode: this.sight.country.iata_code, ...this.sight});
+        this.form.patchValue({
+          countryName: this.sight.country.name,
+          iataCode: this.sight.country.iata_code, ...this.sight
+        });
       });
     }
-
     this.createForm();
   }
 
@@ -55,24 +55,45 @@ export class FormComponent implements OnInit {
     );
   }
 
-  createOrUpdateSight(): void {
-    if (this.sight) {
-      this.detailsService.updateSight(this.form.value, this.longitude, this.latitude).subscribe();
-    }
-    this.sight = new SightseeingPoint();
-    this.sight.name = this.form.value.name;
-    this.sight.longitude = this.form.value.longitude;
-    this.latitude = this.form.value.latitude;
-    this.sight.country = {
-        name: this.form.value.countryName,
-        iata_code: this.form.value.iataCode
-      };
-    this.sight.description = this.form.value.description;
-    this.sight.color = this.form.value.color;
-    this.detailsService.addSight(this.sight).subscribe();
+  private createRandomId(): string {
+    return Math.random().toString(36).substring(2, 12);
   }
 
-  createPoint(): void {
+  private generateUniqueString(): string {
+    let idArray = [];
+    this.detailsService.getIds().subscribe(results => {
+      idArray = results;
+    });
+    let randomString = this.createRandomId();
+    do {
+      randomString = this.createRandomId();
+    }
+    while (idArray.includes(randomString));
+    return randomString;
+  }
 
+  createOrUpdateSight(): void {
+    if (this.sight) {
+        this.getValuesFromForm(this.sight, this.form);
+        this.detailsService.updateSight(this.sight.id, this.sight).subscribe();
+        return;
+      }
+    this.sight = new SightseeingPoint();
+    this.sight.id = this.generateUniqueString();
+    this.getValuesFromForm(this.sight, this.form);
+    this.detailsService.addSight(this.sight).subscribe();
+    console.log('BluBlu');
+  }
+
+  getValuesFromForm(sight: SightseeingPoint, form: FormGroup): void {
+    sight.name = form.value.name;
+    sight.longitude = form.value.longitude;
+    sight.latitude = form.value.latitude;
+    sight.country = {
+      name: form.value.countryName,
+      iata_code: form.value.iataCode
+    };
+    sight.description = form.value.description;
+    sight.color = Number(form.value.color);
   }
 }

@@ -18,7 +18,7 @@ export class SightsService {
 
   getSights(): Observable<SightseeingPoint[]> {
      return this.http.get<SightseeingPoint[]>(`${environment.apiUrl}/sights`).pipe(
-      tap(console.log),
+      // tap(console.log),
       map(sights => {
         return sights.map(sight => {
           const country = new Country();
@@ -26,6 +26,7 @@ export class SightsService {
           country.iata_code = sight.country.iata_code;
 
           return new SightseeingPoint(
+            sight.id,
             sight.name,
             sight.longitude,
             sight.latitude,

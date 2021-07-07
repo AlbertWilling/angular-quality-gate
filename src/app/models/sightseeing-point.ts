@@ -2,6 +2,7 @@ import {Country} from './country';
 
 export class SightseeingPoint {
   constructor(
+    public id: string = '',
     public name: string = '',
     public longitude: number = 0,
     public latitude: number = 0,

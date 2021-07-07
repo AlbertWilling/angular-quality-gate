@@ -1,6 +1,6 @@
 <p>form works!</p>
 <div>
-  <form [formGroup]="form" (ngSubmit)="createPoint()">
+  <form [formGroup]="form" (ngSubmit)="createOrUpdateSight()">
     <h2>Form</h2>
     <label for="name">Enter name</label>
     <input id="name" type="text" formControlName="name">
@@ -12,15 +12,21 @@
     <input id="country" formControlName="countryName">
     <label for="iata">Enter iata code</label>
     <input id="iata" type="text" formControlName="iataCode">
-    <label for="description" type="text">Enter name</label>
-    <input id="description">
+    <label for="description" type="text">Enter description</label>
+    <input id="description" formControlName="description">
     <label for="color">Choose color</label>
-    <select id="color">
+    <select id="color" formControlName="color">
       <option value="1">Color 1</option>
       <option value="2">Color 2</option>
       <option value="3">Color 3</option>
     </select>
-    <button type="submit">Submit</button>
+    <ng-container *ngIf="sight; then modify; else add"></ng-container>
+    <ng-template #modify>
+      <button type="submit" [disabled]="this.form.invalid">Update sight</button>
+    </ng-template>
+    <ng-template #add>
+      <button type="submit" [disabled]="this.form.invalid">Add sight</button>
+    </ng-template>
   </form>
 </div>
 

@@ -1,7 +1,8 @@
 {
   "sights": [
     {
-      "name": "Wawel",
+      "id": "ntl2knypvm",
+      "name": "Wawel444",
       "longitude": 19.9353576,
       "latitude": 50.0541492,
       "country": {
@@ -12,18 +13,8 @@
       "color": 3
     },
     {
-      "name": "Dragon",
-      "longitude": 19.933606117422418,
-      "latitude": 50.053059067891,
-      "country": {
-        "name": "POLAND",
-        "iata_code": "PL"
-      },
-      "description": "Dragon of Wawel Hill, is a famous dragon in Polish folklore. His lair was in a cave at the foot of Wawel Hill on the bank of the Vistula River",
-      "color": 2
-    },
-    {
-      "name": "Krakus Mound",
+      "id": "ggte5lz768",
+      "name": "Krakus Mound2",
       "longitude": 19.957947163916888,
       "latitude": 50.038264921962835,
       "country": {
@@ -32,6 +23,18 @@
       },
       "description": "This large mound of unknown origin is a popular destination for scenic views of the city.",
       "color": 1
+    },
+    {
+      "id": "d6o02rg6p9",
+      "name": "Dragon344234",
+      "longitude": 19.933606117422418,
+      "latitude": 50.053059067891,
+      "country": {
+        "name": "POLAND",
+        "iata_code": "PL"
+      },
+      "description": "Dragon of Wawel Hill, is a famous dragon in Polish folklore. His lair was in a cave at the foot of Wawel Hill on the bank of the Vistula River",
+      "color": 2
     }
   ]
 }
