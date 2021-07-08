@@ -32,19 +32,19 @@
     <div *ngIf="errorMessage('iataCode', 'required')" class="alert alert-danger">
       IATA code is required
     </div>
-    <label for="description" type="text">Enter description</label>
-    <input id="description" formControlName="description" class="form-control">
+    <label for="description">Enter description</label>
+    <input id="description" type="text" formControlName="description" class="form-control">
     <div *ngIf="errorMessage('description', 'required')" class="alert alert-danger">
       Description is required
     </div>
-    <div *ngIf="errorMessage('description', 'pattern')" class="alert alert-danger">
-      Description can have maximum 256 characters
+    <div *ngIf="errorMessage('description', 'maxlength')" class="alert alert-danger">
+      Description cannot exceed 256 characters
     </div>
     <label for="color">Choose color</label>
     <select id="color" formControlName="color" class="form-control">
-      <option value="1">Color 1</option>
-      <option value="2">Color 2</option>
-      <option value="3">Color 3</option>
+      <option value="1" [style.background-color]="'#FF5733'">Color 1</option>
+      <option value="2" [style.background-color]="'#54CCE2'">Color 2</option>
+      <option value="3" [style.background-color]="'#973AFF'">Color 3</option>
     </select>
     <div *ngIf="errorMessage('color', 'required')" class="alert alert-danger">
       Choose the color
@@ -54,12 +54,12 @@
       <button type="submit" [disabled]="this.form.invalid">Update sight</button>
     </ng-template>
     <ng-template #add>
-      <button type="submit" [disabled]="this.form.invalid">Add sight</button>
+      <button id="submit-button" type="submit" [disabled]="this.form.invalid">Add sight</button>
     </ng-template>
   </form>
 </div>
 <div class="submitted" *ngIf="submitted">
-  <h2>Form has been submitted</h2>
+  <h2 id="submit-message">Form has been submitted</h2>
 <!--  <button (click)="">Add new sight point</button>-->
 </div>
 

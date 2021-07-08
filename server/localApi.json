@@ -35,6 +35,54 @@
       },
       "description": "Dragon of Wawel Hill, is a famous dragon in Polish folklore. His lair was in a cave at the foot of Wawel Hill on the bank of the Vistula River",
       "color": 2
+    },
+    {
+      "id": "gzvdg8tk5e",
+      "name": "Testing Point",
+      "longitude": 12.2345,
+      "latitude": 12.5678,
+      "country": {
+        "name": "Poland",
+        "iata_code": "PL"
+      },
+      "description": "Description of Poland",
+      "color": 1
+    },
+    {
+      "id": "yg7fo281rg",
+      "name": "Testing Point",
+      "longitude": 12.2345,
+      "latitude": 12.5678,
+      "country": {
+        "name": "Poland",
+        "iata_code": "PL"
+      },
+      "description": "Description of Poland",
+      "color": 1
+    },
+    {
+      "id": "2swjqc8mid",
+      "name": "Testing Point",
+      "longitude": 12.2345,
+      "latitude": 12.5678,
+      "country": {
+        "name": "Poland",
+        "iata_code": "PL"
+      },
+      "description": "Description of Poland",
+      "color": 1
+    },
+    {
+      "id": "kghulc7bnd",
+      "name": "Testing Point",
+      "longitude": 12.2345,
+      "latitude": 12.5678,
+      "country": {
+        "name": "Poland",
+        "iata_code": "PL"
+      },
+      "description": "Description of Poland",
+      "color": 1
     }
   ]
 }
